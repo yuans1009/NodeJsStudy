@@ -5,13 +5,19 @@
    "version": "0.2.0",
    "configurations": [
       {
-         "name": "05-node-module-system",
-         "program": "${workspaceFolder}/section3-basics/05-node-module-system/app.js",
+         "type": "node-terminal",
          "request": "launch",
-         "skipFiles": [
-            "<node_internals>/**"
-         ],
-         "type": "node"
+         "command": "cd section3-basics/05-node-module-system && npm start",
+         "name": "node-terminal-npm-start"
+      },
+      {
+         "type": "node",
+         "request": "launch",
+         "name": "Launch via npm start",
+         "runtimeExecutable": "npm",
+         "runtimeArgs": ["start"],
+         "cwd": "${workspaceFolder}/section3-basics/05-node-module-system",
+         "console": "integratedTerminal"
       },
       {
          "type": "node",
