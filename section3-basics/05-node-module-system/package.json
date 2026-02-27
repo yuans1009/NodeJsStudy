@@ -1,0 +1,23 @@
+{
+  "name": "npm-script-test",
+  "version": "1.0.0",
+  "description": "test",
+  "license": "ISC",
+  "author": "max",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "start-server": "node app.js"
+  },
+  "_scripts_comment": {
+    "test": "This is the default test script that npm creates when you initialize a new project. It simply prints an error message and exits with a non-zero status code, indicating that no tests are defined.",
+    "start": "This script is commonly used to start the application. When you run 'npm start', it executes 'node app.js', which starts the Node.js application defined in 'app.js'.",
+    "start-server": "This is an additional script that also starts the server. You can run it using 'npm run start-server'. It's essentially the same as the 'start' script but provides an alternative name for starting the server.",
+
+    "how-to-init": "This is how you can initialize a new Node.js project. When you run 'npm init', it creates a 'package.json' file with default values, including the 'test' script.",
+    "how-to-install-3rd-party-packages": "When you install third-party packages using npm, they are added to the 'dependencies' section of the 'package.json' file. This allows you to manage your project's dependencies and ensures that anyone who clones your project can easily install the required packages using 'npm install'.",
+    "dev-dependencies": "Dev dependencies are packages that are only needed during development, such as testing frameworks or build tools. They are listed under the 'devDependencies' section in 'package.json'. You can install a package as a dev dependency using 'npm install --save-dev <package-name>'."
+  }
+}
