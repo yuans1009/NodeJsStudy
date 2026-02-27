@@ -6,7 +6,7 @@
    "configurations": [
       {
          "name": "05-node-module-system",
-         "program": "${workspaceFolder}/05-node-module-system/app.js",
+         "program": "${workspaceFolder}/section3-basics/05-node-module-system/app.js",
          "request": "launch",
          "skipFiles": [
             "<node_internals>/**"
@@ -20,7 +20,7 @@
          "skipFiles": [
             "<node_internals>/**"
          ],
-         "program": "${workspaceFolder}\\03-blocking-and-non-blocking-code\\app.js"
+         "program": "${workspaceFolder}/section3-basics/03-blocking-and-non-blocking-code/app.js"
       }
    ]
 }
