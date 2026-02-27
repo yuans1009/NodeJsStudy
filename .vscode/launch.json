@@ -22,11 +22,16 @@
       {
          "type": "node",
          "request": "launch",
-         "name": "03-blocking-and-non-blocking-code",
+         "name": "05-node-module-system-nodemon",
          "skipFiles": [
             "<node_internals>/**"
          ],
-         "program": "${workspaceFolder}/section3-basics/03-blocking-and-non-blocking-code/app.js"
+         "program": "${workspaceFolder}/section3-basics/05-node-module-system/app.js",
+         "console": "integratedTerminal",
+         "restart": true,
+         "runtimeExecutable": "nodemon"
+         // "Make sure to install nodemon globally using 'npm install -g nodemon' before using this configuration."
+         // Also, nodemon needs to be stopped manually in the terminal after debugging, as it will keep running to watch for file changes.
       }
    ]
 }
