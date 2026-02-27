@@ -14,4 +14,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(adminRoutes);
 app.use(shopRoutes);
 
+// This will catch any requests that haven't been handled by the above routes and send a 404 response
+app.use((req, res, next) => {
+  res.status(404)
+     .send('<h1>Page Not Found</h1>');
+});
+
 app.listen(3000);
