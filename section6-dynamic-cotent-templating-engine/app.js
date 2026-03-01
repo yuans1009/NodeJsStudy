@@ -2,11 +2,13 @@ const path = require('path');
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const expressHbs = require('express-handlebars');
 
 const app = express();
 
-// set up pug as templating engine
-app.set('view engine', 'pug');
+// set up express-handlebars as templating engine
+app.engine('handlebars', expressHbs({ layoutsDir: 'views/layouts/', defaultLayout: 'main-layout', extname: 'hbs' }));
+app.set('view engine', 'handlebars');
 app.set('views', 'views'); // views is the default value, can be omitted
 
 const adminData = require('./routes/admin');
