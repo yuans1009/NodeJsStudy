@@ -8,8 +8,8 @@ const app = express();
 
 // set up express-handlebars as templating engine
 // the name should be the same as the extension of the template files
-app.engine('handlebars', expressHbs());
-app.set('view engine', 'handlebars');
+app.engine('hbs', expressHbs());
+app.set('view engine', 'hbs');
 app.set('views', 'views'); // views is the default value, can be omitted
 
 const adminData = require('./routes/admin');
