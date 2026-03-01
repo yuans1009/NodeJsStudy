@@ -7,7 +7,8 @@ const expressHbs = require('express-handlebars');
 const app = express();
 
 // set up express-handlebars as templating engine
-app.engine('handlebars', expressHbs({ layoutsDir: 'views/layouts/', defaultLayout: 'main-layout', extname: 'hbs' }));
+// the name should be the same as the extension of the template files
+app.engine('handlebars', expressHbs());
 app.set('view engine', 'handlebars');
 app.set('views', 'views'); // views is the default value, can be omitted
 
