@@ -1,0 +1,19 @@
+//- This file defines the document type for the HTML output using Pug (formerly Jade).
+//- In Pug, 'doctype html' is the correct and standard way to declare an HTML5 doctype.
+//- No additional 'html' property or tag is needed here; Pug will generate the appropriate <!DOCTYPE html> in the rendered HTML.
+doctype html
+html(lang="en")
+   head
+      meta(charset="UTF-8")
+      meta(name="viewport", content="width=device-width, initial-scale=1.0")
+      title My Shop
+      link(rel="stylesheet", href="/css/main.css")
+      link(rel="stylesheet", href="/css/product.css")
+   body
+      header.main-header
+         nav.main-header__nav 
+            ul.main-header__item-list 
+               li.main-header__item
+                  a.active(href="/") Shop 
+               li.main-header__item
+                  a.active(href="/admin/add-product") Add Product 
