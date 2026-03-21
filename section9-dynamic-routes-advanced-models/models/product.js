@@ -1,13 +1,14 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
+const Cart = require("./cart");
 
 const p = path.join(
   path.dirname(process.mainModule.filename),
-  'data',
-  'products.json'
+  "data",
+  "products.json",
 );
 
-const getProductsFromFile = cb => {
+const getProductsFromFile = (cb) => {
   fs.readFile(p, (err, fileContent) => {
     if (err) {
       cb([]);
@@ -54,13 +55,19 @@ module.exports = class Product {
 
     getProductsFromFile((products) => {
       if (!products) {
+        console.log("products not found");
         return;
       }
+      const product = products.find((p) => p.id === id);
+      if (!product) {
+        console.log("product not found");
+        return;
+      }
+
       const updatedProducts = products.filter((p) => p.id !== id);
       fs.writeFile(p, JSON.stringify(updatedProducts), (err) => {
         if (!err) {
-          // const Cart = require("./cart");
-          // Cart.deleteProduct(id);
+          Cart.deleteProductById(id, product.price);
         }
 
         console.log(err);
