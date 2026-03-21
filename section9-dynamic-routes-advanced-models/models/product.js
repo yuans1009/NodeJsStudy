@@ -47,6 +47,27 @@ module.exports = class Product {
     });
   }
 
+  static deleteById(id) {
+    if (!id) {
+      return;
+    }
+
+    getProductsFromFile((products) => {
+      if (!products) {
+        return;
+      }
+      const updatedProducts = products.filter((p) => p.id !== id);
+      fs.writeFile(p, JSON.stringify(updatedProducts), (err) => {
+        if (!err) {
+          // const Cart = require("./cart");
+          // Cart.deleteProduct(id);
+        }
+
+        console.log(err);
+      });
+    });
+  }
+
   static fetchAll(cb) {
     getProductsFromFile(cb);
   }
