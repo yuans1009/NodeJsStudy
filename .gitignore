@@ -141,3 +141,4 @@ section3-basics/03-blocking-and-non-blocking-code/message.txt
 section3-basics/05-node-module-system/message.txt
 message.txt
 section6-dynamic-cotent-templating-engine/data/products.json
+section9-dynamic-routes-advanced-models/data/cart.json
