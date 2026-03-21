@@ -12,9 +12,6 @@
             <hr>
             <h2><%= product.price %></h2>
             <p><%= product.description %></p>
-            <form action="/cart" method="POST">
-                <input type="hidden" name="productId" value="<%= product.id %>">
-                <button type="submit" class="btn">Add to Cart</button>
-            </form>
+            <%- include('add-to-cart.ejs', { product: product }) %>
         </main>
         <%- include('../includes/end.ejs') %>
