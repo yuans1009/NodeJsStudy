@@ -82,4 +82,35 @@ module.exports = class Cart {
       }
     });
   }
+
+  static deleteProductById(productId, productPrice) {
+    fs.readFile(p, (err, fileContent) => {
+      if (err) {
+        return;
+      }
+      const cart = JSON.parse(fileContent);
+      const updatedCart = { ...cart };
+
+      // Find the existing product in the cart
+      const productIndex = updatedCart.products.findIndex(
+        (prod) => prod.id === productId,
+      );
+      const product = updatedCart.products[productIndex];
+
+      if (!product) {
+        return;
+      }
+
+      const productQty = product.qty;
+      updatedCart.products = updatedCart.products.filter(
+        (prod) => prod.id !== productId,
+      );
+      updatedCart.totalPrice =
+        updatedCart.totalPrice - productPrice * productQty;
+
+      fs.writeFile(p, JSON.stringify(updatedCart), (err) => {
+        console.log(err);
+      });
+    });
+  }
 };
