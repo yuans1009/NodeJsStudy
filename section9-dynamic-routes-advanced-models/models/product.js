@@ -13,8 +13,9 @@ module.exports = class Product {
   save() {
     // Use VALUES(?, ?, ?, ?) to prevent SQL injection
     return db.execute(
-      'INSERT INTO products (title, price, imageUrl, description) VALUES (?, ?, ?, ?)', 
-      [this.title, this.price, this.imageUrl, this.description]);
+      "INSERT INTO products (title, price, imageUrl, description) VALUES (?, ?, ?, ?)",
+      [this.title, this.price, this.imageUrl, this.description],
+    );
   }
 
   static deleteById(id) {
@@ -48,5 +49,7 @@ module.exports = class Product {
     return db.execute("SELECT * FROM products");
   }
 
-  static findById(id, cb) {}
+  static findById(id, cb) {
+    return db.execute("SELECT * FROM products WHERE products.id = ?", [id]);
+  }
 };
