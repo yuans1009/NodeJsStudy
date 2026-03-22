@@ -14,8 +14,15 @@ exports.postAddProduct = (req, res, next) => {
   const price = req.body.price;
   const description = req.body.description;
   const product = new Product(null, title, imageUrl, description, price);
-  product.save();
-  res.redirect('/');
+  product
+    .save()
+    .then(() => {
+      console.log("Created Product!");
+      res.redirect("/");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 exports.getEditProduct = (req, res, next) => {
@@ -52,8 +59,15 @@ exports.postEditProduct = (req, res, next) => {
     updatedDescription,
     updatedPrice,
   );
-  updatedProduct.save();
-  res.redirect("/admin/products");
+  updatedProduct
+    .save()
+    .then(() => {
+      console.log("Updated Product!");
+      res.redirect("/admin/products");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 exports.deleteProduct = (req, res, next) => {

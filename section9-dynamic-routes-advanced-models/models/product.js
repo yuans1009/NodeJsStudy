@@ -11,24 +11,10 @@ module.exports = class Product {
   }
 
   save() {
-    getProductsFromFile((products) => {
-      const updatedProducts = [...products];
-      if (this.id) {
-        const existingProductIndex = products.findIndex(
-          (p) => p.id === this.id,
-        );
-        if (existingProductIndex >= 0) {
-          updatedProducts[existingProductIndex] = this;
-        }
-      } else {
-        this.id = Math.random().toString();
-        updatedProducts.push(this);
-      }
-
-      fs.writeFile(p, JSON.stringify(updatedProducts), (err) => {
-        console.log(err);
-      });
-    });
+    // Use VALUES(?, ?, ?, ?) to prevent SQL injection
+    return db.execute(
+      'INSERT INTO products (title, price, imageUrl, description) VALUES (?, ?, ?, ?)', 
+      [this.title, this.price, this.imageUrl, this.description]);
   }
 
   static deleteById(id) {
