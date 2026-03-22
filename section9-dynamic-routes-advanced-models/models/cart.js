@@ -50,10 +50,7 @@ module.exports = class Cart {
       const updatedCart = { ...cart };
 
       // Find the existing product in the cart
-      const productIndex = updatedCart.products.findIndex(
-        (prod) => prod.id === id,
-      );
-      const product = updatedCart.products[productIndex];
+      const product = updatedCart.products.find((prod) => prod.id === id);
 
       if (!product) {
         return;
