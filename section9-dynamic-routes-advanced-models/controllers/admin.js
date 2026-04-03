@@ -13,17 +13,23 @@ exports.postAddProduct = (req, res, next) => {
   const imageUrl = req.body.imageUrl;
   const price = req.body.price;
   const description = req.body.description;
-  const product = new Product(null, title, imageUrl, description, price);
-  product
-    .save()
-    .then(() => {
-      console.log("Created Product!");
+
+  // Product.build()
+  // create immediately saves to the database, so we don't need to call save() after it
+  Product.create({
+    title: title,
+    description: description,
+    price: price,
+    imageUrl: imageUrl,
+  })
+    .then((result) => {
+      console.log("Created Product!", result);
       res.redirect("/");
     })
     .catch((err) => {
       console.log(err);
     });
-};
+};;;;;
 
 exports.getEditProduct = (req, res, next) => {
   const editMode = req.query.edit;
