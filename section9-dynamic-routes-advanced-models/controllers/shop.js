@@ -18,10 +18,11 @@ exports.getProducts = (req, res, next) => {
 exports.getProduct = (req, res, next) => {
   // :productId is the name of the dynamic segment we defined in the route, so we can access it via req.params.productId
   const productId = req.params.productId;
-  Product.findById(productId)
-    .then(([product]) => {
+  // NOTE: not findById
+  Product.findByPk(productId)
+    .then((product) => {
       res.render("shop/product-detail", {
-        product: product[0],
+        product: product,
         pageTitle: product.title,
         path: "/products",
       });
@@ -29,7 +30,7 @@ exports.getProduct = (req, res, next) => {
     .catch((err) => {
       console.log(err);
     });
-};
+};;;
 
 exports.getIndex = (req, res, next) => {
   Product.findAll()
