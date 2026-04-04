@@ -29,9 +29,24 @@ User.hasMany(Product);
 // force: true will drop the table if it already exists, so we don't have to worry about the table already existing when we run the app multiple times during development. 
 // In production, you should use migrations instead of sync({ force: true }) to manage your database schema.
 sequelize
-  .sync({ force: true })
+  // .sync({ force: true })
+  .sync()
   .then((result) => {
-    // console.log(result);
+    return User.findByPk(1);
+  })
+  .then((user) => {
+    if (!user) {
+      return User.create({
+        name: "Default User",
+        email: "default@example.com",
+      });
+    }
+
+    // Can also just return user here, it will be wrapped in a resolved promise automatically
+    return Promise.resolve(user);
+  })
+  .then((user) => {
+    // console.log(user);
     app.listen(3000);
   })
   .catch((err) => {
