@@ -24,24 +24,24 @@ exports.postAddProduct = (req, res, next) => {
   })
     .then((result) => {
       console.log("Created Product!", result);
-      res.redirect("/");
+      res.redirect("/admin/products");
     })
     .catch((err) => {
       console.log(err);
     });
-};;;;;
+};
 
 exports.getEditProduct = (req, res, next) => {
   const editMode = req.query.edit;
   if (!editMode) {
-    return res.redirect("/");
+    return res.redirect("/admin/products");
   }
   const productId = req.params.productId;
 
   Product.findByPk(productId)
     .then((product) => {
       if (!product) {
-        return res.redirect("/");
+        return res.redirect("/admin/products");
       }
 
       res.render("admin/edit-product", {
@@ -82,9 +82,20 @@ exports.postEditProduct = (req, res, next) => {
 
 exports.deleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
-  Product.deleteById(prodId);
-  res.redirect("/admin/products");
-};
+  // Solution 1
+  // Product.destroy({ where: { id: prodId } });
+
+  // Solution 2
+  Product.findByPk(prodId)
+    .then((product) => {
+      return product.destroy();
+    })
+    .then(() => {
+      console.log("Deleted Product");
+      res.redirect("/admin/products");
+    })
+    .catch((err) => console.log(err));
+};;;
 
 exports.getProducts = (req, res, next) => {
   Product.findAll()
