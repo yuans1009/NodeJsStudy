@@ -14,14 +14,17 @@ exports.postAddProduct = (req, res, next) => {
   const price = req.body.price;
   const description = req.body.description;
 
-  // Product.build()
-  // create immediately saves to the database, so we don't need to call save() after it
-  Product.create({
-    title: title,
-    description: description,
-    price: price,
-    imageUrl: imageUrl,
-  })
+  // sequelize add createProduct method because the code in app.js
+  // Product.belongsTo(User, { constraints: true, onDelete: "CASCADE" });
+  // User.hasMany(Product);
+
+  req.user
+    .createProduct({
+      title: title,
+      description: description,
+      price: price,
+      imageUrl: imageUrl,
+    })
     .then((result) => {
       console.log("Created Product!", result);
       res.redirect("/admin/products");
@@ -29,7 +32,24 @@ exports.postAddProduct = (req, res, next) => {
     .catch((err) => {
       console.log(err);
     });
-};
+
+  //   // Product.build()
+  //   // create immediately saves to the database, so we don't need to call save() after it
+  //   Product.create({
+  //     title: title,
+  //     description: description,
+  //     price: price,
+  //     imageUrl: imageUrl,
+  //     userId: req.user.id, // associate the product with the user who created it
+  //   })
+  //     .then((result) => {
+  //       console.log("Created Product!", result);
+  //       res.redirect("/admin/products");
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+};;
 
 exports.getEditProduct = (req, res, next) => {
   const editMode = req.query.edit;
