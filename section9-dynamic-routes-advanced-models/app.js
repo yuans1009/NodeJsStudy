@@ -47,8 +47,8 @@ Product.belongsToMany(Cart, { through: CartItem });
 // force: true will drop the table if it already exists, so we don't have to worry about the table already existing when we run the app multiple times during development.
 // In production, you should use migrations instead of sync({ force: true }) to manage your database schema.
 sequelize
-  .sync({ force: true })
-  // .sync()
+  //  .sync({ force: true })
+  .sync()
   .then((result) => {
     return User.findByPk(1);
   })
@@ -65,6 +65,9 @@ sequelize
   })
   .then((user) => {
     // console.log(user);
+    return user.createCart(); // createCart is a method added by Sequelize because of the User.hasOne(Cart) association
+  })
+  .then((cart) => {
     app.listen(3000);
   })
   .catch((err) => {
