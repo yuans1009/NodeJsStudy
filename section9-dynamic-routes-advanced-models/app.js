@@ -9,6 +9,10 @@ const Product = require("./models/product");
 const User = require("./models/user");
 const Cart = require("./models/cart");
 const CartItem = require("./models/cart-item");
+const Order = require("./models/order");
+const OrderItem = require("./models/order-item");
+
+
 const app = express();
 
 app.set("view engine", "ejs");
@@ -44,10 +48,15 @@ Cart.belongsTo(User); // adds userId to Cart
 Cart.belongsToMany(Product, { through: CartItem });
 Product.belongsToMany(Cart, { through: CartItem });
 
+Order.belongsTo(User);
+User.hasMany(Order);
+
+Order.belongsToMany(Product, { through: OrderItem });
+
 // force: true will drop the table if it already exists, so we don't have to worry about the table already existing when we run the app multiple times during development.
 // In production, you should use migrations instead of sync({ force: true }) to manage your database schema.
 sequelize
-  //  .sync({ force: true })
+  // .sync({ force: true })
   .sync()
   .then((result) => {
     return User.findByPk(1);
